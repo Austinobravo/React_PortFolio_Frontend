@@ -87,7 +87,7 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        An Official Welcome to my Portfolio - Quick one: Did you turn the Computer on your way down? 👍  - My Name is Austine Ebogu, I"m a FullStack Developer and also a Technical Writer that is to say if i'm not developing and solving problem with code, I'm writing on <a href="https://smegearhosting.com" target="_blank"style={{color:"blue", fontWeight:900}}>SMEGEARHOSTING</a> where i write on anything hosting on the web. I'm grateful you've read this far, now you can go down and send me a mail on the contact form and i'll get it on my Gmail account and respond as soon as posible. Feel free to turn the ball on your way down.
+        An Official Welcome to my Portfolio - Quick one: Did you turn the Computer on your way down? if Yes, thumbs up👍  - My Name is  <a className="badge-base__link LI-simple-link" href="https://ng.linkedin.com/in/austine-ebogu-27818123b?trk=profile-badge" target="_blank"style={{color:"blue", fontWeight:900}}> Austine Ebogu,</a>  I"m a FullStack Developer and also a Technical Writer that is to say if i'm not developing and solving problem with code, I'm writing on <a href="https://smegearhosting.com" target="_blank"style={{color:"blue", fontWeight:900}}>SMEGEARHOSTING</a> where i write on anything hosting on the web. I'm grateful you've read this far, now you can go down and send me a mail on the contact form and i'll get it on my Gmail account and respond as soon as posible. Feel free to turn the ball on your way down.
       </motion.p>
       <div className="mt-20 flex flex-wrap gap-10">
         {services.map((service, index) => (
