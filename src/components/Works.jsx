@@ -56,17 +56,21 @@ const ProjectCard = ({
   </motion.div>
 );
 const Works = () => {
+  const [loading, setLoading] = useState(false)
   const [projects, setProjects] = useState([]);
   useEffect(() => {
+    setLoading(true)
     const ProjectsData = async () => {
       let response = await axios.get(
         `${import.meta.env.VITE_BACKEND_API}/projects/`
       );
       try {
         setProjects(response.data);
+        setLoading(false)
         // console.log(response.data);
       } catch (err) {
         setProjects(response.data.message)
+        setLoading(false)
       }
     };
     ProjectsData();
@@ -85,11 +89,17 @@ const Works = () => {
           Building Projects is one thing and building awesome and beautiful projects is another. Some of my projects both Local and real life projects. I've also had the priviledge to work with awesome team members developing and delivering on this projects.
         </motion.p>
       </div>
+      {loading ? (
+          <div className="spinner-border spinner-border-sm mt-20 flex flex-wrap gap-7" role="status">
+              <span className="visually-hidden">Loading...</span>
+          </div>
+      ) : (
       <div className="mt-20 flex flex-wrap gap-7">
         {projects.map((project) => (
           <ProjectCard key={`project-${project.id}`} index={project.id} {...project} />
         ))}
       </div>
+      )}
     </>
   );
 };

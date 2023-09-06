@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { styles } from "../style";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
-import { testimonials } from "../constants";
+// import { testimonials } from "../constants";
 import axios from "axios";
 
 const FeedbackCard = ({
@@ -31,26 +31,29 @@ const FeedbackCard = ({
             {designation} of {company}
           </p>
         </div>
-        <img
+        {/* <img
           src={image}
           alt={`feedback-by-${name}`}
           className="w-10 h-10  rounded-full object-cover"
-        />
+        /> */}
       </div>
     </div>
   </motion.div>
 );
 const Feedbacks = () => {
-  // const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(false)
+  const [testimonials, setTestimonials] = useState([]);
   useEffect(() => {
+    setLoading(true)
     const TestimonialData = async () => {
       let response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_API}/`)
+        `${import.meta.env.VITE_BACKEND_API}/testimonials/`)
       try {
-        // setTestimonials(response.data);
-        console.log(response.data);
+        setTestimonials(response.data);
+        setLoading(false)
+      
       } catch (err) {
-        console.log(err);
+        setLoading(false)
       }
     };
     TestimonialData();
@@ -65,11 +68,18 @@ const Feedbacks = () => {
           <h2 className={styles.sectionHeadText}>Testimonials </h2>
         </motion.div>
       </div>
+      {loading ? (
+      <div className="spinner-border spinner-border-sm mt-20 flex flex-wrap gap-7" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+
+    ):(
       <div className={`${styles.paddingX} -mt-20 pb-14 flex flex-wrap gap-7`}>
         {testimonials.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
         ))}
       </div>
+    )}
     </div>
   );
 };

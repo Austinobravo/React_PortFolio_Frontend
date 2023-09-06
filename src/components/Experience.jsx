@@ -49,17 +49,21 @@ const ExperienceCard = ({ experience }) => {
 };
 
 const Experience = () => {
+  const [loading, setLoading] = useState(false)
   const [experiences, setExperience] = useState([]);
   useEffect(() => {
+    setLoading(true)
     const ExperienceData = async () => {
       let response = await axios.get(
         `${import.meta.env.VITE_BACKEND_API}/experience/`
       );
       try {
         setExperience(response.data);
+        setLoading(false)
         // console.log(response.data);
       } catch (err) {
         setExperience(response.data.message)
+        setLoading(false)
       }
     };
     ExperienceData();
@@ -71,6 +75,11 @@ const Experience = () => {
         <h2 className={styles.sectionHeadText}>Work Experience</h2>
       </motion.div>
 
+      {loading ? (
+          <div className="spinner-border spinner-border-sm mt-20 flex flex-col" role="status">
+              <span className="visually-hidden">Loading...</span>
+          </div>
+      ) : (
       <div className="mt-20 flex flex-col">
         <VerticalTimeline>
           {experiences.map((experience, index) => (
@@ -78,6 +87,9 @@ const Experience = () => {
           ))}
         </VerticalTimeline>
       </div>
+
+      )}
+
     </>
   );
 };
