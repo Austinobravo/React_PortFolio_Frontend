@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from 'react'
 import { SectionWrapper } from '../hoc'
-// import { technologies } from '../constants'
+import { technologies } from '../constants'
 import {BallCanvas} from './canvas'
 import axios from 'axios'
 const Tech = () => {

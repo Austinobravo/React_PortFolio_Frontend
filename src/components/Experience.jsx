@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { styles } from "../style";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
-// import { experiences } from '../constants'
+import { experiences } from '../constants'
 import "react-vertical-timeline-component/style.min.css";
 import axios from "axios";
 
